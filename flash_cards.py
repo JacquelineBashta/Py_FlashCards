@@ -1,23 +1,20 @@
-
+import os
 import random as r
 import tkinter as tk
 import pandas as pd
-import os
 
 
 LEFT = 0
 RIGHT = 1
 BG_COLOR = "#B1DDC6"  # rbg(179, 222, 198)
-SECONDS_TO_FLIP = 5
+
 LANGUAGE = "Spanish"
 TRANS_LANGUAGE = "English"
-WORD = "ver"
-TRANS_WORD = "to see"
+
 MAX_SEEN_FREQ = 1000
-MAX_WAIT_SEC = 5
+SECONDS_TO_FLIP = 5
 DB_LOC = "data/spanish_1000_words.csv"
-MAX_SESSION_WORDS = 5
-##### ---------------------------------- class Button ---------------------------------------######
+# ---------------------------------- class Button ---------------------------------------######
 
 
 class Button:
@@ -42,7 +39,7 @@ class Button:
     def hide(self):
         self.btn.grid_remove()
 
-##### ---------------------------------- class Card ---------------------------------------######
+# ---------------------------------- class Card ---------------------------------------######
 
 
 class Card:
@@ -66,7 +63,7 @@ class Card:
         self.card.itemconfigure(self.lbl_2, text=lbl_2)
         self.card.grid(column=0, row=0, columnspan=2)
 
-##### ---------------------------------- class FlashCard ---------------------------------------######
+# ---------------------------------- class FlashCard ---------------------------------------######
 
 
 class FlashCard:
@@ -77,6 +74,7 @@ class FlashCard:
         self.front_card = Card("images/card_front.png")
         self.back_card = Card("images/card_back.png")
         self.start_btn = Button(self.window, RIGHT, "images/start.png", self._start_pressed, 90, 198)
+        self.end_btn = Button(self.window, RIGHT, "images/end.png", self._end_pressed, 90, 198)
 
         self.yes_btn = Button(self.window, RIGHT, "images/right.png", self._yes_pressed)
         self.no_btn = Button(self.window, LEFT, "images/wrong.png", self._no_pressed)
@@ -85,7 +83,7 @@ class FlashCard:
         self.data = pd.read_csv(DB_LOC)
         self.random_index = 0
         self.the_word = self.data.loc[self.random_index]
-        self.session_words = 0
+        self.end_game = False
 
     def start(self):
         # 1. show welcome page with start button
@@ -115,13 +113,13 @@ class FlashCard:
         self.start_btn.hide()
         self.yes_btn.hide()
         self.no_btn.hide()
+        self.end_btn.show()
         self.front_card.show(LANGUAGE, self.the_word.spanish)
         # 5. wait for x timer
-        self._count_down(MAX_WAIT_SEC)
+        self._count_down(SECONDS_TO_FLIP)
 
     def _count_down(self, tmr_sec):
         if tmr_sec > 0:
-            print(tmr_sec)
             self.count_down_job = self.window.after(
                 1000, self._count_down, tmr_sec - 1)
         else:
@@ -130,6 +128,7 @@ class FlashCard:
     def _show_trans_word(self):
         # 6. show back card with the word ( in english)
         self.front_card.hide()
+        self.end_btn.hide()
         self.back_card.show(TRANS_LANGUAGE, self.the_word.english)
         # show btns
         self.yes_btn.show()
@@ -143,36 +142,40 @@ class FlashCard:
         self.no_btn.hide()
         self.back_card.show(f"Total words seen = {total_seen} \nTotal words learned = {total_max_seen} ", "")
 
-    def _start_pressed(self):
-        if self.session_words < MAX_SESSION_WORDS:
-            self.session_words += 1
-            # 2. listen on start button
-
+    def _main_seq(self):
+        if not self.end_game:
             # 3. choose random word with seen_freq != MAX_SEEN
             self._choose_a_word()
             self._show_the_word()
         else:
+            # 10. if user press "End", save final data to csv and show summary.
             if os.path.isfile(DB_LOC):
                 os.remove(DB_LOC)
             self.data.to_csv(DB_LOC, index=False)
             self.show_summary()
 
+    def _start_pressed(self):
+        # 2. listen on start button
+        self._main_seq()
+
+    def _end_pressed(self):
+        if self.count_down_job:
+            self.window.after_cancel(self.count_down_job)
+        self.end_game = True
+        self.end_btn.hide()
+        self._main_seq()
+
     def _yes_pressed(self):
-        print("yes pressed")
+        # 8. if user click (✔) ,set seen_freq = 1000 + repeat from 3
         self.data.loc[self.random_index, ["seen_freq"]] = MAX_SEEN_FREQ
-        print(self.data.loc[self.random_index])
-        self._start_pressed()
+        self._main_seq()
 
     def _no_pressed(self):
-        print("no pressed")
+        # 7. wait on user response + inc seen_freq for word
+        # 9. if user click (✖) ,repeat from 3
         self.data.loc[self.random_index, ["seen_freq"]] += 1
-        print(self.data.loc[self.random_index])
-        self._start_pressed()
+        self._main_seq()
 
 
-# TODO: 7. wait on user response + inc seen_freq for word
-# TODO: 8. if user click (✔) ,set seen_freq = 1000 + repeat from 3
-# TODO: 9.  if user click (✖) ,repeat from 3
-# TODO: 10. if user press "End", save final data to csv and show summary.
 my_game = FlashCard()
 my_game.start()

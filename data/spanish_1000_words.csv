@@ -14,7 +14,7 @@ ser,be,0
 en,at,0
 uno,one,0
 tener,have,0
-este,this,0
+este,this,1000
 desde,from,0
 por,by,0
 caliente,hot,0
@@ -107,7 +107,7 @@ tomar,take,0
 conseguir,get,0
 lugar,place,0
 hecho,made,0
-vivir,live,0
+vivir,live,1000
 donde,where,0
 después,after,0
 espalda,back,0
@@ -132,11 +132,11 @@ forma,form,0
 frase,sentence,0
 gran,great,0
 pensar,think,0
-decir,say,0
+decir,say,1000
 ayudar,help,0
 bajo,low,0
 línea,line,0
-ser distinto,differ,0
+ser distinto,differ,1
 "a su vez,",turn,0
 causa,cause,0
 mucho,much,0
@@ -225,7 +225,7 @@ nunca,never,0
 último,last,0
 dejar,let,0
 pensado,thought,0
-ciudad,city,0
+ciudad,city,1000
 árbol,tree,0
 cruzar,cross,0
 granja,farm,0
@@ -237,7 +237,7 @@ sierra,saw,0
 ahora,far,0
 mar,sea,0
 dibujar,draw,0
-izquierda,left,0
+izquierda,left,1000
 tarde,late,0
 ejecutar,run,0
 no,don’t,0
@@ -246,7 +246,7 @@ prensa,press,0
 Cerrar,close,0
 noche,night,0
 reales,real,0
-vida,life,0
+vida,life,1000
 pocos,few,0
 norte,north,0
 libro,book,0
@@ -270,7 +270,7 @@ seguro,sure,0
 ver,watch,0
 colores,color,0
 cara,face,0
-madera,wood,0
+madera,wood,1
 principal,main,0
 abierta,open,0
 parecer,seem,0
@@ -288,7 +288,7 @@ grupo,group,0
 siempre,always,0
 música,music,0
 los,those,0
-ambos,both,0
+ambos,both,1
 marca,mark,0
 menudo,often,0
 carta,letter,0
@@ -326,10 +326,10 @@ puerta,door,0
 producto,product,0
 negro,black,0
 corto,short,0
-numeral,numeral,0
+numeral,numeral,1
 clase,class,0
 viento,wind,0
-pregunta,question,0
+pregunta,question,1000
 suceder,happen,0
 completo,complete,0
 buque,ship,0
@@ -348,7 +348,7 @@ desde,since,0
 cima,top,0
 todo,whole,0
 rey,king,0
-calle,street,0
+calle,street,1000
 pulgadas,inch,0
 multiplicar,multiply,0
 nada,nothing,0
@@ -362,7 +362,7 @@ objeto,object,0
 decidir,decide,0
 superficie,surface,0
 profunda,deep,0
-luna,moon,0
+luna,moon,1000
 isla,island,0
 pie,foot,0
 sistema,system,0
@@ -385,7 +385,7 @@ comprobar,check,0
 juego,game,0
 forma,shape,0
 equiparar,equate,0
-caliente,hot,0
+caliente,hot,1000
 señorita,miss,0
 traído,brought,0
 calor,heat,0
@@ -405,12 +405,12 @@ ciudad,town,0
 fina,fine,0
 cierto,certain,0
 volar,fly,0
-caer,fall,0
+caer,fall,1
 conducir,lead,0
 grito,cry,0
 oscuro,dark,0
 máquina,machine,0
-nota,note,0
+nota,note,1
 espere,wait,0
 plan de,plan,0
 figura,figure,0
@@ -419,7 +419,7 @@ caja,box,0
 sustantivo,noun,0
 campo,field,0
 resto,rest,0
-correcta,correct,0
+correcta,correct,1000
 capaz,able,0
 libra,pound,0
 hecho,done,0
@@ -441,7 +441,7 @@ caliente,warm,0
 libre,free,0
 minuto,minute,0
 fuerte,strong,0
-especial,special,0
+especial,special,1000
 mente,mind,0
 detrás,behind,0
 claro,clear,0
@@ -517,7 +517,7 @@ razón,reason,0
 longitud,length,0
 representar,represent,0
 arte,art,0
-sujeto,subject,0
+sujeto,subject,1
 región,region,0
 tamaño,size,0
 variar,vary,0
@@ -577,7 +577,7 @@ instrumento,instrument,0
 guardado,kept,0
 vidrio,glass,0
 hierba,grass,0
-vaca,cow,0
+vaca,cow,1
 trabajo,job,0
 borde,edge,0
 signo,sign,0
@@ -614,7 +614,7 @@ grito,shout,0
 excepto,except,0
 escribió,wrote,0
 semilla,seed,0
-tono,tone,0
+tono,tone,1
 unirse,join,0
 sugerir,suggest,0
 limpia,clean,0
@@ -625,7 +625,7 @@ aumentando,rise,0
 mal,bad,0
 golpe,blow,0
 aceite,oil,0
-sangre,blood,0
+sangre,blood,1
 tocar,touch,0
 creció,grew,0
 ciento,cent,0
@@ -634,8 +634,8 @@ equipo,team,0
 alambre,wire,0
 costo,cost,0
 perdido,lost,0
-marrón,brown,0
-desgaste,wear,0
+marrón,brown,1000
+desgaste,wear,1
 jardín,garden,0
 igual,equal,0
 enviado,sent,0
@@ -647,7 +647,7 @@ justo,fair,0
 banco,bank,0
 recoger,collect,0
 guardar,save,0
-el control,control,0
+el control,control,1000
 decimal,decimal,0
 oído,ear,0
 demás,else,0
@@ -710,7 +710,7 @@ resolver,solve,0
 de metal,metal,0
 si,whether,0
 empujar,push,0
-siete,seven,0
+siete,seven,1000
 párrafo,paragraph,0
 tercero,third,0
 deberá,shall,0
@@ -722,7 +722,7 @@ piso,floor,0
 ya sea,either,0
 resultado,result,0
 quemar,burn,0
-colina,hill,0
+colina,hill,1
 seguro,safe,0
 gato,cat,0
 siglo,century,0
@@ -730,7 +730,7 @@ considerar,consider,0
 tipo,type,0
 ley,law,0
 bit,bit,0
-costa,coast,0
+costa,coast,1000
 copia,copy,0
 frase,phrase,0
 silencio,silent,0
@@ -755,14 +755,14 @@ silla,chair,0
 peligro,danger,0
 fruta,fruit,0
 rica,rich,0
-de espesor,thick,0
+de espesor,thick,1
 soldado,soldier,0
 proceso,process,0
 operar,operate,0
 práctica,practice,0
 separada,separate,0
 difícil,difficult,0
-médico,doctor,0
+médico,doctor,1
 por favor,please,0
 proteger,protect,0
 mediodía,noon,0
@@ -795,7 +795,7 @@ ferrocarril,rail,0
 imaginar,imagine,0
 proporcionar,provide,0
 acuerdo,agree,0
-"por tanto,",thus,0
+"por tanto,",thus,1
 suave,gentle,0
 mujer,woman,0
 capitán,captain,0
@@ -829,7 +829,7 @@ planeta,planet,0
 prisa,hurry,0
 jefe,chief,0
 colonia,colony,0
-reloj,clock,0
+reloj,clock,1000
 mina,mine,0
 empate,tie,0
 entrar,enter,0
@@ -882,7 +882,7 @@ poblar,populate,0
 polluelo,chick,0
 querido,dear,0
 enemigo,enemy,0
-responder,reply,0
+responder,reply,1000
 bebida,drink,0
 producirse,occur,0
 apoyo,support,0
@@ -923,9 +923,9 @@ discutir,discuss,0
 adelante,forward,0
 similar,similar,0
 guiar,guide,0
-experiencia,experience,0
+experiencia,experience,1000
 puntuación,score,0
-manzana,apple,0
+manzana,apple,1000
 comprado,bought,0
 llevado,led,0
 pitch,pitch,0
@@ -941,7 +941,7 @@ noche,evening,0
 condición,condition,0
 pienso,feed,0
 herramienta,tool,0
-totales,total,0
+totales,total,1000
 básico,basic,1000
 olor,smell,0
 valle,valley,0
@@ -953,7 +953,7 @@ bloque,block,0
 tabla,chart,0
 sombrero,hat,0
 vender,sell,0
-éxito,success,0
+éxito,success,1000
 empresa,company,0
 restar,subtract,0
 evento,event,0
@@ -961,12 +961,12 @@ evento,event,0
 acuerdo,deal,0
 nadar,swim,0
 plazo,term,0
-opuesta,opposite,0
-esposa,wife,0
-zapato,shoe,0
+opuesta,opposite,1
+esposa,wife,1000
+zapato,shoe,1000
 hombro,shoulder,0
-propagación,spread,0
-organizar,arrange,0
+propagación,spread,1
+organizar,arrange,1
 campamento,camp,0
 inventar,invent,0
 algodón,cotton,0
@@ -974,13 +974,13 @@ nacido,born,0
 determinar,determine,0
 cuarto de galón,quart,0
 nueve,nine,0
-camión,truck,0
+camión,truck,1
 ruido,noise,0
 nivel,level,0
 oportunidad,chance,0
 reunir,gather,0
 tienda,shop,0
-tramo,stretch,0
+tramo,stretch,1
 lanzar,throw,0
 brillo,shine,0
 propiedad,property,0
@@ -993,7 +993,7 @@ repita,repeat,0
 exigir,require,0
 amplio,broad,0
 preparar,prepare,0
-sal,salt,0
+sal,salt,1000
 nariz,nose,0
 plurales,plural,0
 cólera,anger,0
