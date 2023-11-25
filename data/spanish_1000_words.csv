@@ -37,7 +37,7 @@ nos,we,0
 lata,can,0
 fuera,out,0
 otros,other,0
-eran,were,0
+eran,were,1000
 que,which,0
 hacer,do,0
 su,their,0
@@ -306,7 +306,7 @@ habitual,usual,0
 joven,young,0
 listo,ready,0
 por encima de,above,0
-nunca,ever,0
+nunca,ever,1000
 rojo,red,0
 lista,list,0
 aunque,though,0
@@ -386,7 +386,7 @@ juego,game,0
 forma,shape,0
 equiparar,equate,0
 caliente,hot,1000
-señorita,miss,0
+señorita,miss,1000
 traído,brought,0
 calor,heat,0
 nieve,snow,0
@@ -439,7 +439,7 @@ desarrollar,develop,0
 océano,ocean,0
 caliente,warm,0
 libre,free,0
-minuto,minute,0
+minuto,minute,1000
 fuerte,strong,0
 especial,special,1000
 mente,mind,0
@@ -930,7 +930,7 @@ comprado,bought,0
 llevado,led,0
 pitch,pitch,0
 abrigo,coat,0
-masa,mass,0
+masa,mass,1
 tarjeta,card,0
 banda,band,1
 cuerda,rope,0
@@ -970,7 +970,7 @@ organizar,arrange,1
 campamento,camp,0
 inventar,invent,0
 algodón,cotton,0
-nacido,born,0
+nacido,born,1
 determinar,determine,0
 cuarto de galón,quart,0
 nueve,nine,0

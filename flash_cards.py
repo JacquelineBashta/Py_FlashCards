@@ -12,7 +12,7 @@ LANGUAGE = "Spanish"
 TRANS_LANGUAGE = "English"
 
 MAX_SEEN_FREQ = 1000
-SECONDS_TO_FLIP = 5
+SECONDS_TO_FLIP_SEC = 5
 DB_LOC = "data/spanish_1000_words.csv"
 # ---------------------------------- class Button ---------------------------------------######
 
@@ -48,7 +48,7 @@ class Card:
         self.create()
 
     def create(self):
-        self.card = tk.Canvas(width=800, height=526, background=BG_COLOR,
+        self.card = tk.Canvas(width=800, height=526, bg=BG_COLOR,
                               highlightthickness=0)
         self.card_img = tk.PhotoImage(file=self.img)
         self.card.create_image(400, 263, image=self.card_img)
@@ -71,11 +71,12 @@ class FlashCard:
         self.window = tk.Tk()
         self.window.title("flashy")
         self.window.config(background=BG_COLOR, padx=50, pady=50)
+
         self.front_card = Card("images/card_front.png")
         self.back_card = Card("images/card_back.png")
+
         self.start_btn = Button(self.window, RIGHT, "images/start.png", self._start_pressed, 90, 198)
         self.end_btn = Button(self.window, RIGHT, "images/end.png", self._end_pressed, 90, 198)
-
         self.yes_btn = Button(self.window, RIGHT, "images/right.png", self._yes_pressed)
         self.no_btn = Button(self.window, LEFT, "images/wrong.png", self._no_pressed)
 
@@ -84,6 +85,15 @@ class FlashCard:
         self.random_index = 0
         self.the_word = self.data.loc[self.random_index]
         self.end_game = False
+
+    def _hide_all(self):
+        self.back_card.hide()
+        self.front_card.hide()
+        self.start_btn.hide()
+        self.end_btn.hide()
+        self.yes_btn.hide()
+        self.no_btn.hide()
+# -------------- Public methods -----------####
 
     def start(self):
         # 1. show welcome page with start button
@@ -97,62 +107,8 @@ class FlashCard:
             os.remove(DB_LOC)
         self.data.to_csv(DB_LOC, index=False)
 
-    def _choose_a_word(self, ):
-        # 3. choose random word with seen_freq != MAX_SEEN
-        random_index = r.randint(0, self.data.shape[0])
-        random_word = self.data.loc[random_index]
-        if random_word.seen_freq == MAX_SEEN_FREQ:
-            self._choose_a_word()
-        else:
-            self.random_index = random_index
-            self.the_word = self.data.loc[self.random_index]
 
-    def _show_the_word(self):
-        # 4. show word (in foreign lang) on front card
-        self.back_card.hide()
-        self.start_btn.hide()
-        self.yes_btn.hide()
-        self.no_btn.hide()
-        self.end_btn.show()
-        self.front_card.show(LANGUAGE, self.the_word.spanish)
-        # 5. wait for x timer
-        self._count_down(SECONDS_TO_FLIP)
-
-    def _count_down(self, tmr_sec):
-        if tmr_sec > 0:
-            self.count_down_job = self.window.after(
-                1000, self._count_down, tmr_sec - 1)
-        else:
-            self._show_trans_word()
-
-    def _show_trans_word(self):
-        # 6. show back card with the word ( in english)
-        self.front_card.hide()
-        self.end_btn.hide()
-        self.back_card.show(TRANS_LANGUAGE, self.the_word.english)
-        # show btns
-        self.yes_btn.show()
-        self.no_btn.show()
-
-    def show_summary(self):
-        total_max_seen = self.data.query("seen_freq == 1000").seen_freq.count()
-        total_seen = self.data.query("seen_freq != 0").seen_freq.count()
-        self.back_card.hide()
-        self.yes_btn.hide()
-        self.no_btn.hide()
-        self.back_card.show(f"Total words seen = {total_seen} \nTotal words learned = {total_max_seen} ", "")
-
-    def _main_seq(self):
-        if not self.end_game:
-            # 3. choose random word with seen_freq != MAX_SEEN
-            self._choose_a_word()
-            self._show_the_word()
-        else:
-            # 10. if user press "End", save final data to csv and show summary.
-            if os.path.isfile(DB_LOC):
-                os.remove(DB_LOC)
-            self.data.to_csv(DB_LOC, index=False)
-            self.show_summary()
+# ------------ BUTTON methods -------------- ####
 
     def _start_pressed(self):
         # 2. listen on start button
@@ -162,7 +118,6 @@ class FlashCard:
         if self.count_down_job:
             self.window.after_cancel(self.count_down_job)
         self.end_game = True
-        self.end_btn.hide()
         self._main_seq()
 
     def _yes_pressed(self):
@@ -175,6 +130,53 @@ class FlashCard:
         # 9. if user click (✖) ,repeat from 3
         self.data.loc[self.random_index, ["seen_freq"]] += 1
         self._main_seq()
+
+# -------- Main functionality methods ----------------- ####
+    def _main_seq(self):
+        if not self.end_game:
+            # 3. choose random word with seen_freq != MAX_SEEN
+            self._choose_a_word()
+            self._show_the_word()
+        else:
+            # 10. if user press "End", save final data to csv and show summary.
+            if os.path.isfile(DB_LOC):
+                os.remove(DB_LOC)
+            self.data.to_csv(DB_LOC, index=False)
+            self._show_summary()
+
+    def _choose_a_word(self, ):
+        # 3. choose random word with seen_freq != MAX_SEEN
+        random_index = r.randint(0, self.data.shape[0])
+        random_word = self.data.loc[random_index]
+        if random_word.seen_freq == MAX_SEEN_FREQ:
+            self._choose_a_word()
+        else:
+            self.random_index = random_index
+            self.the_word = self.data.loc[self.random_index]
+
+    def _show_the_word(self):
+        # 4. show word (in foreign lang) on front card
+        self._hide_all()
+        self.front_card.show(LANGUAGE, self.the_word.spanish)
+        self.end_btn.show()
+
+        # 5. wait for x timer
+        self.count_down_job = self.window.after(
+            SECONDS_TO_FLIP_SEC * 1000, self._show_trans_word)
+
+    def _show_trans_word(self):
+        # 6. show back card with the word ( in english)
+        self._hide_all()
+        self.back_card.show(TRANS_LANGUAGE, self.the_word.english)
+        # show btns
+        self.yes_btn.show()
+        self.no_btn.show()
+
+    def _show_summary(self):
+        total_max_seen = self.data.query("seen_freq == 1000").seen_freq.count()
+        total_seen = self.data.query("seen_freq != 0").seen_freq.count()
+        self._hide_all()
+        self.back_card.show(f"Total words seen = {total_seen} \nTotal words learned = {total_max_seen} ", "")
 
 
 my_game = FlashCard()
